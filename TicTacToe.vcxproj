@@ -151,7 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basicai.cpp" />
+    <ClCompile Include="boardutils.cpp" />
+    <ClCompile Include="consolestuff.cpp" />
+    <ClCompile Include="gamemoves.cpp" />
     <ClCompile Include="TicTacToe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basicai.h" />
+    <ClInclude Include="consolestuff.h" />
+    <ClInclude Include="boardutils.h" />
+    <ClInclude Include="gamemoves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,5 +18,31 @@
     <ClCompile Include="TicTacToe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="boardutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gamemoves.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="basicai.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="consolestuff.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="consolestuff.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="boardutils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gamemoves.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basicai.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
