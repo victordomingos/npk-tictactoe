@@ -21,6 +21,7 @@ int main()
 								 "Tardis", "KITT", "R2D2", "3PO" };
 	char board[3][3] = { { ' ', ' ', ' '}, { ' ', ' ', ' '}, { ' ', ' ', ' '}, };
     char key = '-';
+	char smartness = 1;  // TODO: make this variable and progressive.
     int position;
     int current_player;
     char current_player_symbol;
@@ -95,7 +96,7 @@ int main()
         if ((using_AI >= 1) and (current_player == 2))
         {
             Sleep(rand() % 3000 + 500);
-            if (makeAImove(board, current_player_symbol))
+            if (makeAImove(board, current_player_symbol, smartness))
             {
                 change_turn = true;
                 win_status = check_win_move(board);
