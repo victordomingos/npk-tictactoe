@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 
 #include "boardutils.h"
 #include "gamemoves.h"
@@ -48,7 +49,6 @@ bool makeMove(char board[3][3], int position, char symbol)
 	}
 	else
 	{
-		cout << "\nThat position is already taken. Please play again.\n";
 		return false;
 	}
 }

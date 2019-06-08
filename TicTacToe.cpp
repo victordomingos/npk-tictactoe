@@ -26,7 +26,7 @@ int main()
     int current_player;
     char current_player_symbol;
     int using_AI = 0;
-    string player1, player2;
+	string players[3] = { "" };
     int player1score = 0;
     int player2score = 0;
     int win_status;
@@ -37,8 +37,8 @@ int main()
     displayWelcome();
 
     cout << "\nPlease enter first player's name:\n -> ";
-    getline(cin, player1);
-    cout << "\nHi, " << player1 << "!\n\n";
+    getline(cin, players[1]);
+    cout << "\nHi, " << players[1] << "!\n\n";
 
 
     using_AI = choose_opponent();
@@ -50,14 +50,14 @@ int main()
     else if (using_AI == -2)
     {
         cout << "\n\nPlease enter the second player's name:\n -> ";
-        getline(cin, player2);
-        cout << "\nHi, " << player2 << "!\n\n";
+        getline(cin, players[2]);
+        cout << "\nHi, " << players[2] << "!\n\n";
     }
     else
     {
-        player2 = ai_names[using_AI];
+        players[2] = ai_names[using_AI];
         clearScreen();
-        cout << "\n\nPlaying against " << player2 << ", one of most famous TicTactToe players in the world...\n\n" << endl;
+        cout << "\n\nPlaying against " << players[2] << ", one of most famous TicTactToe players in the world...\n\n" << endl;
     }
 
 
@@ -70,9 +70,9 @@ int main()
     // Determine who plays first
     current_player = rand() % 2 + 1;
     if (current_player == 1)
-        cout << endl << player1 << " plays first (" << current_player_symbol << ").\n";
+        cout << endl << players[1] << " plays first (" << current_player_symbol << ").\n";
     else
-        cout << endl << player2 << " plays first (" << current_player_symbol << ").\n";
+        cout << endl << players[2] << " plays first (" << current_player_symbol << ").\n";
 
     waitForAnyKey();
 
@@ -80,17 +80,16 @@ int main()
     // Start game loop
     do
     {
-        clearScreen(); displayHeader();
-        displayBoard(board, player1, player2, player1score, player2score);
+		clearScreen();
+		displayHeader();
+		displayBoard(board, players[1], players[2], player1score, player2score);
 
         // if current player is human, ask for position
         // if not, generate an inteligent move.
         if (current_player == 1)
-            cout << "\n " << player1 << " (1-9)? ";
+            cout << "\n " << players[1] << " (1-9)? ";
         else if (current_player == 2 and using_AI == -2)
-            cout << "\n " << player2 << " (1-9)? ";
-
-
+            cout << "\n " << players[2] << " (1-9)? ";
 
         // AI player is always number 2. Is it the current player?
         if ((using_AI >= 1) and (current_player == 2))
@@ -100,43 +99,31 @@ int main()
             {
                 change_turn = true;
                 win_status = check_win_move(board);
-                if (win_status == 1)
-                {
-                    if (current_player == 1)
-                    {
-                        player1score++;
-                        clearScreen();
-                        displayHeader();
-                        displayBoard(board, player1, player2, player1score, player2score);
-                        displayWinMessage(player1);
-                    }
-                    else
-                    {
-                        player2score++;
-                        clearScreen();
-                        displayHeader();
-                        displayBoard(board, player1, player2, player1score, player2score);
-                        displayWinMessage(player2);
-                    }
 
-                    waitForAnyKey();
+				if (win_status == 0)
+					{ change_turn = true; }
+				else
+				{
+					change_turn = false;
+					clearScreen();
+					displayHeader();
+					displayBoard(board, players[1], players[2], player1score, player2score);
 
-                    cout << "\nNot changing turns...\n"; // DEBUG
-                    change_turn = false;
-                    newGame(board);
-                }
-                else if (win_status == -1) //draw
-                {
-                    clearScreen();
-                    displayHeader();
-                    displayBoard(board, player1, player2, player1score, player2score);
-                    displayDrawMessage();
-                    waitForAnyKey();
-                    change_turn = false;
-                    newGame(board);
-                }
-                else { change_turn = true; }
+					if (win_status == 1)
+					{
+						if (current_player == 1)
+							player1score++;
+						else
+							player2score++;
 
+						displayWinMessage(players[current_player]);
+					}
+					else // we have a draw
+						{ displayDrawMessage(); }
+
+					waitForAnyKey();
+					newGame(board);
+				}
             }
             // if board is full we should not be here in the first place:
             else
@@ -145,50 +132,46 @@ int main()
         else
         {
             fflush(stdin);
-            key = _getche();
-            clearScreen();
-
+            key = _getche();		
+			
             switch (key)
             {
             case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
                 position = key - '0';  // convert a numeric character to int using its 'face value'
-                if (makeMove(board, position, current_player_symbol))
-                {
-                    win_status = check_win_move(board);
-                    if (win_status == 1)
-                    {
-                        if (current_player == 1)
-                        {
-                            player1score++;
-                            clearScreen(); displayHeader();
-                            displayBoard(board, player1, player2, player1score, player2score);
-                            displayWinMessage(player1);
-                        }
-                        else
-                        {
-                            player2score++;
-                            clearScreen(); displayHeader();
-                            displayBoard(board, player1, player2, player1score, player2score);
-                            displayWinMessage(player2);
-                        }
+				if (makeMove(board, position, current_player_symbol))
+				{
+					win_status = check_win_move(board);
+					if (win_status == 0)
+						{ change_turn = true;}
+					else
+					{
+						change_turn = false;
+						clearScreen();
+						displayHeader();
+						displayBoard(board, players[1], players[2], player1score, player2score);
 
-                        waitForAnyKey();
-                        newGame(board);
-                    }
-                    else if (win_status == -1) //draw
-                    {
-                        clearScreen(); displayHeader();
-                        displayBoard(board, player1, player2, player1score, player2score);
-                        displayDrawMessage();
-                        waitForAnyKey();
-                        change_turn = false;
-                        newGame(board);
-                    }
-                    else { change_turn = true; }
+						if (win_status == 1)
+						{
+							if (current_player == 1) 
+								player1score++;
+							else 
+								player2score++;
+
+							displayWinMessage(players[current_player]);
+						}
+						else // we have a draw
+							displayDrawMessage();
+
+						waitForAnyKey();
+						newGame(board);
+					}
                 }
-                else { change_turn = false; }
-
-
+                else 
+				{
+					change_turn = false;
+					cout << "\nThat position is already taken. Please play again.\n";
+					Sleep(2000);
+				}
                 break;
 
             default:

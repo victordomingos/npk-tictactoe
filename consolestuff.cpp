@@ -32,20 +32,20 @@ void displayWelcome(void)
 	clearScreen();
 	cout << "\n\nWelcome to yet another incredible TicTacToe game!\n\n\n\n";
 
-	Sleep(1000);
+	Sleep(500);
 	cout << "Here's how it works:\n\n\n";
-	Sleep(500);		cout << "  - Each player either gets a bag full of O's, or a bag full of X's.\n\n";
-	Sleep(200);		cout << "  - At each turn, the player chooses an empty board position for the\n    next move.\n\n";
-	Sleep(200);		cout << "  - The first player who manages to get 3 aligned positions wins.\n\n";
-	Sleep(200);		cout << "  - Those 3 positions can be aligned in vertical, horizontal or diagonal\n    directions.\n\n";
+	Sleep(60);		cout << "  - Each player either gets a bag full of O's, or a bag full of X's.\n\n";
+	Sleep(60);		cout << "  - At each turn, the player chooses an empty board position for the\n    next move.\n\n";
+	Sleep(60);		cout << "  - The first player who manages to get 3 aligned positions wins.\n\n";
+	Sleep(60);		cout << "  - Those 3 positions can be aligned in vertical, horizontal or diagonal\n    directions.\n\n";
 
-	Sleep(800);
+	Sleep(500);
 	waitForAnyKey();
 
 	cout << "\n\nJust one more thing:\n\n";
-	Sleep(500);
+	Sleep(400);
 	cout << " - Each board postion has its own number. So, in order to make a move,\n   you just need to press the corresponding key.\n\n";
-	Sleep(800);
+	Sleep(60);
 	cout << "Now, let's see which number corresponds to each position in the board:\n\n";
 	cout << "   1 | 2 | 3\n";
 	cout << "  -----------\n";
@@ -53,7 +53,7 @@ void displayWelcome(void)
 	cout << "  -----------\n";
 	cout << "   7 | 8 | 9\n\n\n";
 
-	Sleep(800);
+	Sleep(500);
 	waitForAnyKey();
 }
 
@@ -61,7 +61,7 @@ void displayWelcome(void)
 void displayHeader()
 {
 	// Welcome text
-	cout << "\n_ _ _ The amazing NPK TicTacToe game! _ _ _\n\n\n\n";
+	cout << "\n_ _ _ The amazing NPK TicTacToe game! _ _ _\n\n\n";
 }
 
 
