@@ -21,7 +21,7 @@ int main()
 								 "Tardis", "KITT", "R2D2", "3PO" };
 	char board[3][3] = { { ' ', ' ', ' '}, { ' ', ' ', ' '}, { ' ', ' ', ' '}, };
     char key = '-';
-	char smartness = 1;  // TODO: make this variable and progressive.
+	char smartness = 2;  // TODO: make this variable and progressive.
     int position;
     int current_player;
     char current_player_symbol;
@@ -106,7 +106,10 @@ int main()
 					if (win_status == 1)
 					{
 						if (current_player == 1)
+						{
 							player1score++;
+							smartness++;
+						}
 						else
 							player2score++;
 
