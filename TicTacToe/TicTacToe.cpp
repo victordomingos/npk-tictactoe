@@ -56,8 +56,7 @@ int main()
     else
     {
         players[2] = ai_names[using_AI];
-        clearScreen();
-        cout << "\n\nPlaying against " << players[2] << ", one of most famous TicTactToe players in the world...\n\n" << endl;
+        cout << "\n\nPlaying against " << players[2] << ", one of most famous TicTactToe players in the world...\n" << endl;
     }
 
 
@@ -69,13 +68,8 @@ int main()
 
     // Determine who plays first
     current_player = rand() % 2 + 1;
-    if (current_player == 1)
-        cout << endl << players[1] << " plays first (" << current_player_symbol << ").\n";
-    else
-        cout << endl << players[2] << " plays first (" << current_player_symbol << ").\n";
-
+	cout << endl << players[current_player] << " plays first (" << current_player_symbol << ").\n";
     waitForAnyKey();
-
 
     // Start game loop
     do
@@ -175,8 +169,11 @@ int main()
                 break;
 
             default:
-                if (key == 27)
-                    return -1;
+				if (key == 27)
+				{
+					displayQuitMessage();
+					return 0;
+				}
 
                 change_turn = false;
                 cout << "\n Please choose an empty position, between 1 and 9.";
